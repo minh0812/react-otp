@@ -1,14 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import firebase from './firebase'
 
-class App extends React.Component {
-  handleChange = (e) =>{
-    const {name, value } = e.target
-    this.setState({
-        [name]: value
-      })
-  }
-  configureCaptcha = () =>{
+
+const App = () => {
+
+  const [phone, setPhone] = useState("");
+  const [otp, setOtp] = useState("")
+
+  const configureCaptcha = () =>{
     window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-in-button', {
       'size': 'invisible',
       'callback': (response) => {
@@ -19,10 +18,11 @@ class App extends React.Component {
       defaultCountry: "VN"
     });
   }
-  onSignInSubmit = (e) => {
+
+  const onSignInSubmit = (e) => {
     e.preventDefault()
-    this.configureCaptcha()
-    const phoneNumber = "+84" + this.state.mobile
+    configureCaptcha()
+    const phoneNumber = "+84" + phone
     console.log(phoneNumber)
     const appVerifier = window.recaptchaVerifier;
     firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
@@ -38,9 +38,10 @@ class App extends React.Component {
           console.log("SMS not sent")
         });
   }
-  onSubmitOTP = (e) =>{
+
+  const onSubmitOTP = (e) =>{
     e.preventDefault()
-    const code = this.state.otp
+    const code = otp
     console.log(code)
     window.confirmationResult.confirm(code).then((result) => {
       // User signed in successfully.
@@ -55,23 +56,23 @@ class App extends React.Component {
       // ...
     });
   }
-  render() {
-    return (
-      <div>
-        <h2>Login Form</h2>
-        <form onSubmit={this.onSignInSubmit}>
-          <div id="sign-in-button"></div>
-          <input type="number" name="mobile" placeholder="Mobile number" required onChange={this.handleChange}/>
-          <button type="submit">Submit</button>
-        </form>
 
-        <h2>Enter OTP</h2>
-        <form onSubmit={this.onSubmitOTP}>
-          <input type="number" name="otp" placeholder="OTP Number" required onChange={this.handleChange}/>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <h2>Login Form</h2>
+      <form onSubmit={onSignInSubmit}>
+        <div id="sign-in-button"></div>
+        <input type="number" name="phone" placeholder="Mobile number" required onChange={(e) => {setPhone(e.target.value)}} />
+        <button type="submit">Submit</button>
+      </form>
+
+      <h2>Enter OTP</h2>
+      <form onSubmit={onSubmitOTP}>
+        <input type="number" name="otp" placeholder="OTP Number" required onChange={(e) => {setOtp(e.target.value)}}/>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  )
 }
+
 export default App
