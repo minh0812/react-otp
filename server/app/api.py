@@ -45,7 +45,9 @@ async def get_user(id: str) -> dict:
     data = read_todo_data()
     for user in data:
         if user["id"] == id:
-            return user
+            return {
+                "data": user
+            }
 
     return {
         "data": "not found"
@@ -55,7 +57,7 @@ async def get_user(id: str) -> dict:
 @app.post("/user", tags=["user"])
 async def add_user(user: User) -> dict:
     data = read_todo_data()
-    data.insert(0,{
+    data.insert(0, {
         'id': user.id,
         'name': user.name,
         'phone': user.phone
@@ -66,7 +68,3 @@ async def add_user(user: User) -> dict:
     return {
         "data": user
     }
-
-
-
-
