@@ -1,7 +1,10 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import firebase from "./firebase";
-
+import "./style.css";
+import Button from "mui-button";
+import { BiPaperPlane } from 'react-icons/bi';
+import { FiLogIn } from 'react-icons/fi';
 const Signin = () => {
   const [phone, setPhone] = useState("");
   const [otp, setOtp] = useState("");
@@ -86,36 +89,60 @@ const Signin = () => {
   };
 
   return (
-    <div>
-      <h1>OTP DEMO</h1>
-      <h2>Login Form</h2>
-      <form onSubmit={onSignInSubmit}>
-        <div id="sign-in-button"></div>
-        <input
-          type="number"
-          name="phone"
-          placeholder="Mobile number"
-          required
-          onChange={(e) => {
-            setPhone(e.target.value);
-          }}
-        />
-        <button type="submit">Send OTP</button>
-      </form>
+    <div>    
+      <div className="login-box">
+        <h2 style={{fontSize:'40px'}}>OTP DEMO</h2>
+        <h2>Login Form</h2>
+        <form style={{display:'flex'}} onSubmit={onSignInSubmit}>
+          <div className="user-box">
+          <div id="sign-in-button"></div>
+            <input
+              type="text"
+              name="phone"
+              // placeholder="Mobile number"
+              required
+              onChange={(e) => {
+                setPhone(e.target.value);
+              }}
+            />
+            <label>Mobile Number</label>
+          </div>
+          {/* <a href="#" onClick={{}}>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Send OTP
+          </a> */}
+          <div className="frame">
+            {/* <button className="custom-btn btn-16" type="submit">Send OTP</button> */}
+            <Button variant="outlined" type="submit">Send OTP&nbsp;<BiPaperPlane/></Button>
+          </div>
+        
+        </form>
 
-      <h2>Enter OTP</h2>
-      <form onSubmit={onSubmitOTP}>
-        <input
-          type="number"
-          name="otp"
-          placeholder="OTP Number"
-          required
-          onChange={(e) => {
-            setOtp(e.target.value);
-          }}
-        />
-        <button type="submit">Sign in</button>
-      </form>
+        <h2>Enter OTP</h2>
+        <form style={{display:'flex'}} onSubmit={onSubmitOTP}>
+          <div className="user-box">
+            <input
+              type="text"
+              name="otp"
+              // placeholder="OTP Number"
+              required
+              onChange={(e) => {
+                setOtp(e.target.value);
+              }}
+            />
+            <label>OTP Number</label>
+          </div>
+          <div className="frame">
+            <Button variant="outlined" type="submit">Sign In&nbsp;<FiLogIn/></Button>
+          </div>
+        </form>
+      </div>
+      <div className="infoMembers">
+              
+      </div>
     </div>
   );
 };

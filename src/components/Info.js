@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Button from "mui-button";
 
 const Info = () => {
   const [user, setUser] = useState({});
@@ -17,9 +18,10 @@ const Info = () => {
     window.location.href = "/";
   };
   return (
-    <div>
-      <h1>Hello {user.name} </h1>
-      <button onClick={signOut}>Sign Out</button>
+    <div style={{marginTop:'300px'}}>
+      <h1 style={{ display: 'flex', justifyContent: 'center', color: 'white' }}>Hello {user.name} </h1>
+       <Button variant="outlined" type="submit" style={{ display:'flex', margin:'0px auto', color: 'white' }} onClick={signOut}> Sign Out</Button>
+      {/* <button onClick={signOut}>Sign Out</button> */}
     </div>
   );
 };
