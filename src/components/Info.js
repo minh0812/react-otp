@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "mui-button";
+import { VscSignOut } from "react-icons/vsc";
 
 const Info = () => {
   const [user, setUser] = useState({});
@@ -20,7 +21,7 @@ const Info = () => {
   return (
     <div style={{marginTop:'300px'}}>
       <h1 style={{ display: 'flex', justifyContent: 'center', color: 'white' }}>Hello {user.name} </h1>
-       <Button variant="outlined" type="submit" style={{ display:'flex', margin:'0px auto', color: 'white' }} onClick={signOut}> Sign Out</Button>
+       <Button variant="outlined" type="submit" style={{ display:'flex', margin:'0px auto', color: 'white' }} onClick={signOut}> Sign Out&nbsp;<VscSignOut/></Button>
       {/* <button onClick={signOut}>Sign Out</button> */}
     </div>
   );

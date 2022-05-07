@@ -5,6 +5,7 @@ import "./style.css";
 import Button from "mui-button";
 import { BiPaperPlane } from 'react-icons/bi';
 import { FiLogIn } from 'react-icons/fi';
+
 const Signin = () => {
   const [phone, setPhone] = useState("");
   const [otp, setOtp] = useState("");
@@ -87,12 +88,11 @@ const Signin = () => {
         // ...
       });
   };
-
   return (
     <div>    
       <div className="login-box">
         <h2 style={{fontSize:'40px'}}>OTP DEMO</h2>
-        <h2>Login Form</h2>
+        <h2 style={{fontFamily:"Rokkitt, serif", fontSize:'30px'}}>Login Form</h2>
         <form style={{display:'flex'}} onSubmit={onSignInSubmit}>
           <div className="user-box">
           <div id="sign-in-button"></div>
@@ -121,8 +121,8 @@ const Signin = () => {
         
         </form>
 
-        <h2>Enter OTP</h2>
-        <form style={{display:'flex'}} onSubmit={onSubmitOTP}>
+        <h2 style={{fontFamily:"Rokkitt, serif", fontSize:'30px'}}>Enter OTP</h2>
+        <form style={{display:'flex', alignItems: 'center'}} onSubmit={onSubmitOTP}>
           <div className="user-box">
             <input
               type="text"
@@ -135,13 +135,46 @@ const Signin = () => {
             />
             <label>OTP Number</label>
           </div>
-          <div className="frame">
+          <div className="frame" style={{marginRight:'10px'}}>
             <Button variant="outlined" type="submit">Sign In&nbsp;<FiLogIn/></Button>
           </div>
         </form>
       </div>
-      <div className="infoMembers">
-              
+      <div className="infoMembers grid-container" style={{marginTop:'30px'}}>
+        <div className="i_member">
+          {/* <img src={avatarImage1} alt="" height="100px" width="100px" style={{ border: "1px solid transparent", borderRadius: "50%" }} /> */}
+          <h3>PHAM DUY MINH</h3>
+          <h3>45.01.104.145</h3>
+        </div>
+
+        <div className="i_member">
+          <h3>NGUYEN NGOC PHUONG QUYNH</h3>
+          <h3>45.01.104.195</h3>
+        </div>
+
+        <div className="i_member">
+          {/* <img src={avatarImage1} alt="" height="100px" width="100px" style={{ border: "1px solid transparent", borderRadius: "50%" }} /> */}
+          <h3>VO THI PHUONG THAM</h3>
+          <h3>45.01.104.218</h3>
+        </div>
+
+        <div className="i_member">
+          {/* <img src={avatarImage1} alt="" height="100px" width="100px" style={{ border: "1px solid transparent", borderRadius: "50%" }} /> */}
+          <h3>HUYNH THI THANH NGAN</h3>
+          <h3>45.01.104.151</h3>
+        </div>
+
+        <div className="i_member">
+          {/* <img src={avatarImage1} alt="" height="100px" width="100px" style={{ border: "1px solid transparent", borderRadius: "50%" }} /> */}
+          <h3>TRINH THI PHUONG VI</h3>
+          <h3>45.01.104.276</h3>
+        </div>
+        
+        <div className="i_member">
+          {/* <img src={avatarImage1} alt="" height="100px" width="100px" style={{ border: "1px solid transparent", borderRadius: "50%" }} /> */}
+          <h3>TRAN THI TU LINH</h3>
+          <h3>45.01.104.127</h3>
+        </div>
       </div>
     </div>
   );
